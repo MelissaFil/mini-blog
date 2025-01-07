@@ -1,6 +1,6 @@
 import{db} from "../firebase/config"
 
-import { createUserWithEmailAndPassword, getAuth, signOut, updateProfile } from "firebase/auth"
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth"
 
 import { useEffect, useState } from "react"
 
@@ -59,6 +59,30 @@ export const useAuthentication = ()=>{
         checkIfIsCancelled()
         signOut(auth)
     }
+
+    const login = async(data)=>{
+        checkIfIsCancelled()
+        setLoading(true)
+        setError(false)
+
+
+        try {
+            await signInWithEmailAndPassword(auth, data.email, data.password)
+            setLoading(false)
+        } catch (error) {
+            let systemErrorMessage;
+
+            if (error.message.includes("user-not-found")) {
+                systemErrorMessage ="Usuários não encontrado."
+            } else if(error.message.includes("INVALID_LOGIN_CREDENTIALS")){
+                systemErrorMessage="Credenciais inválidas"
+            }else{
+                systemErrorMessage="Tente novamente."
+            }
+            setError(systemErrorMessage)
+            setLoading(false)
+        }
+    }
     useEffect(()=>{
         return ()=> setCancelled(true)
     }, [])
@@ -69,5 +93,6 @@ export const useAuthentication = ()=>{
         error,
         loading,
         logout,
+        login,
     }
 }

@@ -5,7 +5,8 @@ import {useAuthentication} from '../hooks/userAuthentication'
 
 const Navbar = () => {
 
-const user = useAuthValue();
+const {user} = useAuthValue();
+const {logout} = useAuthentication();
 
   return (
     <nav className={styles.navbar}>
@@ -43,6 +44,9 @@ const user = useAuthValue();
                 <NavLink to='/posts/create' className={({isActive}) => (isActive ? styles.active : '')}>
                     Novo Post 
                 </NavLink>
+            </li>
+            <li>
+                <button onClick={logout}>Sair</button>
             </li>
 
             </>)}

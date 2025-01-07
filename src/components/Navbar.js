@@ -1,6 +1,8 @@
 import { NavLink } from 'react-router-dom'
 import styles from './Navbar.module.css'
 import { useAuthValue } from '../context/AuthContex'
+import {useAuthentication} from '../hooks/userAuthentication'
+
 const Navbar = () => {
 
 const user = useAuthValue();
@@ -11,7 +13,7 @@ const user = useAuthValue();
             Mine <span>blog</span>
         </NavLink>
         <ul className={styles.links_list}>
-        {!user && (<>
+        
         
             <li>
                 <NavLink to='/' 
@@ -28,7 +30,7 @@ const user = useAuthValue();
                 </NavLink>
             </li>
             
-            </>)}
+           
 
             
             {user && (<>
@@ -44,13 +46,14 @@ const user = useAuthValue();
             </li>
 
             </>)}
-           
-            <li>
-                <NavLink to='/login' className={({isActive})=>(isActive ? styles.active : '')}>Entrar</NavLink>
-            </li>
-            <li>
-                <NavLink to='/cadastrar' className={({isActive})=>(isActive ? styles.active : '')}>Cadastrar</NavLink>
-            </li>
+            {!user && (<>
+                <li>
+                    <NavLink to='/login' className={({isActive})=>(isActive ? styles.active : '')}>Entrar</NavLink>
+                </li>
+                <li>
+                    <NavLink to='/cadastrar' className={({isActive})=>(isActive ? styles.active : '')}>Cadastrar</NavLink>
+                </li>
+            </>)}
 
         </ul>
     </nav>

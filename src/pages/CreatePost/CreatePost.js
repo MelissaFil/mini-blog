@@ -49,7 +49,7 @@ const CreatePost = () => {
     });
 
     if(formError) return
-
+    
     insertDocument({
       title,
       image,

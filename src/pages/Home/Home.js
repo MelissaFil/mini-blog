@@ -7,7 +7,7 @@ const Home = () => {
   const [query, setQuery] = useState('');
   const {documents: posts, loading} = useFetchDocuments("posts")
   return (
-    <div>
+    <div className='container'>
         <h1>Home</h1>
         <div>
           <input placeholder='Procure por tags' onChange={(e)=>setQuery(e.target.value)}/>

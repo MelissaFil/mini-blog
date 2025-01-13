@@ -4,7 +4,36 @@ img{
 
 .tags{
     display: flex;
-    flex-direction: row;
     justify-content: center;
+    margin-bottom: 1.2em;
    
+}
+.tags p {
+    margin-right: .5em;
+}
+.tags span{
+    font-weight: bold;
+}
+.createdBy{
+    font-style: italic;
+    color: #444;
+    font-size: .8em;
+    margin-bottom: .1em;
+    margin-top: .1em;
+
+}
+.descricao{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.containerPosts{
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 500px;
+    margin-bottom: 2em;
 }

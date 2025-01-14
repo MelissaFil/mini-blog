@@ -45,7 +45,7 @@ export const useFetchDocuments = (docCollection, search = null, uid=null)=>{
 
         }
         loadData()
-    },[docCollection, search, uid])
+    },[docCollection, documents, cancelled, search, uid])
 
     useEffect(()=>{
         return ()=>setCancelled(true)

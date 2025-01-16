@@ -8,7 +8,8 @@ function Post() {
     const {document: post} = useFetchDocument("posts", id)
     return (
         <div className={styles.containerPosts}>
-
+            {post && 
+            <>
             <img src={post.image} alt={post.title} className={styles.img}></img>
             <div className={styles.descricao}>
                 <h2 className={styles.title}>{post.title}</h2>
@@ -24,6 +25,8 @@ function Post() {
                 <p>{post.body}</p>
 
             </div>
+            </>}
+            
         </div>
     )
 }

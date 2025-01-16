@@ -37,3 +37,10 @@ img{
     max-width: 500px;
     margin-bottom: 2em;
 }
+
+.tituloDashboard{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}

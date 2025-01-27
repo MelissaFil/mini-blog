@@ -2,11 +2,13 @@ import { useAuthValue } from '../../context/AuthContex'
 import { useFetchDocuments } from '../../hooks/useFetchDocuments'
 import styles from "../../components/PostDetails.module.css"
 import { Link } from 'react-router-dom';
+import { useDeleteDocument } from '../../hooks/useDeleteDocument';
 
 const Dashboard = ()=>{
     const {user} = useAuthValue();
     const uid = user.uid;
     const {documents: posts, loading} = useFetchDocuments("posts", null, uid);
+    const {deleteDocument} = useDeleteDocument("posts", null, uid);
 
     return (
     <div>
@@ -27,6 +29,7 @@ const Dashboard = ()=>{
                     <div className={styles.tituloDashboard}>
                         <h2 className={styles.title}>{post.title}</h2>
                         <Link to={`/posts/edit/${post.id}`}>Editar</Link>
+                        <button onClick={()=> deleteDocument(post.id)}>Deletar</button>
                     </div>
                     <p className={styles.createdBy}>{post.createdBy}</p>
                     <div className={styles.tags}>
